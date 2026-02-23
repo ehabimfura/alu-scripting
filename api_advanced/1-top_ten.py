@@ -13,27 +13,20 @@ def top_ten(subreddit):
         None
     """
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    headers = {"User-Agent": "python3:top_ten:v1.0"}
+    headers = {"User-Agent": "mozilla/5.0"}
+    params = {"limit": 10}
     try:
         response = requests.get(
-            url,
-            headers=headers,
-            params={"limit": 10},
-            allow_redirects=False,
-            timeout=10
+            url, headers=headers, params=params, allow_redirects=False
         )
-        if response.status_code != 200:
-            print(None)
-            return
-
-        data = response.json()
-        posts = data.get("data", {}).get("children", [])
-        if not posts:
-            print(None)
-            return
-
-        for post in posts[:10]:
-            print(post.get("data", {}).get("title"))
     except Exception:
-        # Covers network errors, JSON errors, etc.
         print(None)
+        return
+    if response.status_code != 200:
+        print(None)
+        return
+    posts = response.json().get("data", {}).get("children", [])
+    for post in posts:
+        title = post.get("data", {}).get("title")
+        if title:
+            print(title)
