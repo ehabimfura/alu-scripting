@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Return the number of subscribers of a given subreddit"""
-__author__ = "espoir habimfura"
 import requests
 
 
