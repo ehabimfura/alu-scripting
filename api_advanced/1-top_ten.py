@@ -37,4 +37,3 @@ def top_ten(subreddit):
     except Exception:
         # Covers network errors, JSON errors, etc.
         print(None)
-
