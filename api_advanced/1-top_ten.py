@@ -16,8 +16,9 @@ def top_ten(subreddit):
     headers = {"User-Agent": "linux:1-top_ten:v1.0 (by /u/espoir)"}
     response = requests.get(url, headers=headers, allow_redirects=False)
     if response.status_code != 200:
-        print(None)
         return
     posts = response.json().get("data", {}).get("children", [])
     for post in posts[:10]:
-        print(post.get("data", {}).get("title"))
+        title = post.get("data", {}).get("title")
+        if title is not None:
+            print(title)
