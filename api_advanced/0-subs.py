@@ -3,6 +3,7 @@
 __author__ = "espoir habimfura"
 import requests
 
+
 def number_of_subscribers(subreddit):
     """Return the number of subscribers for a given subreddit.
 
